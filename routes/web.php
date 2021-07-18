@@ -13,12 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
 Route::get('/',[App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('index');
 
-Auth::routes();
 Route::get('/dashboard', function () {
     return redirect()->route('index');
 })->name('home');
+Route::get('/home', function () {
+    return redirect()->route('index');
+})->name('home2');
+
 Route::group(['middleware' => ['auth']], function () {
     Route::prefix('activity')->group(function () {
         Route::view('/', 'activity.index')->name('activity');
