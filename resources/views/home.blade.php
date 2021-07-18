@@ -23,7 +23,7 @@
                 <div class="card-header">{{ __('Latest Activity') }}</div>
 
                 <div class="card-body">
-                    @if()
+                    @if($data != null)
                     <div class="row mb-3">
                         <label class="col-md-4">
                             <h6 class="form-label">Date & time</h6>
