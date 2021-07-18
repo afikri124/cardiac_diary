@@ -23,6 +23,7 @@
                 <div class="card-header">{{ __('Latest Activity') }}</div>
 
                 <div class="card-body">
+                    @if()
                     <div class="row mb-3">
                         <label class="col-md-4">
                             <h6 class="form-label">Date & time</h6>
@@ -63,6 +64,9 @@
                             <span>{{ $data->bloodpressure_dia }}</span>
                         </div>
                     </div>
+                    @else
+                    <p>No data available in Database</p>
+                    @endif
                 </div>
             </div>
         </div>
