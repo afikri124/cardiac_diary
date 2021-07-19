@@ -82,28 +82,6 @@
     <!-- latest jquery-->
     @include('layouts.script')
     <!-- Plugin used-->
-
-    <script type="text/javascript">
-        if ($(".page-wrapper").hasClass("horizontal-wrapper")) {
-            $(".according-menu.other").css("display", "none");
-            $(".sidebar-submenu").css("display", "block");
-        }
-        $(document).ready(function () {
-            $.ajax({
-                type: "GET",
-                url: "{{url('api/notifications')}}",
-                success: function (data) {
-                    // console.log(data);
-                    if(data['messages'] != null){
-                        if(data['messages'].notif != 0) document.getElementById("notif_messages").innerHTML = data['messages'].notif;
-                    }
-                    if(data['appointments'] != null){
-                        if(data['appointments'].notif != 0) document.getElementById("notif_appointments").innerHTML = data['appointments'].notif;
-                    }
-                }
-            });  
-        });
-    </script>
 </body>
 
 </html>

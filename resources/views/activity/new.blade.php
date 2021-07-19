@@ -2,7 +2,6 @@
 @section('title', 'New Activity')
 
 @section('css')
-<link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/select2.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/date-picker.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/timepicker.css')}}">
 @endsection
@@ -21,7 +20,7 @@
 
 @section('content')
 <div class="container-fluid">
-<div class="row justify-content-center">
+    <div class="row justify-content-center">
         <div class="col-md-8">
             <form class="card" method="POST" action="">
                 @csrf
@@ -57,8 +56,9 @@
                         <label class="col-sm-3 col-form-label">Oxygen Level</label>
                         <div class="col-sm-9">
                             <div class="input-group">
-                                <input class="form-control" type="number" name="OxygenLevel" title="Oxygen Level">
-                                <div class="input-group-append"><span class="input-group-text">%</span></div>
+                                <input class="form-control" type="number" id="OxygenLevel" name="OxygenLevel"
+                                    title="Oxygen Level">
+                                <div class="input-group-append"><span class="input-group-text" required>%</span></div>
                             </div>
                         </div>
                     </div>
@@ -67,7 +67,8 @@
                         <div class="col-sm-9">
                             <div class="input-group">
                                 <div class="input-group-prepend"><span class="input-group-text">SYS</span></div>
-                                <input class="form-control" type="number" name="SYS" title="Blood Pressure SYS">
+                                <input class="form-control" type="number" id="SYS" name="SYS" title="Blood Pressure SYS"
+                                    required>
                             </div>
                         </div>
                     </div>
@@ -76,11 +77,11 @@
                         <div class="col-sm-9">
                             <div class="input-group">
                                 <div class="input-group-prepend"><span class="input-group-text">DIA</span></div>
-                                <input class="form-control" type="number" name="DIA" title="Blood Pressure DIA">
+                                <input class="form-control" type="number" id="DIA" name="DIA" title="Blood Pressure DIA"
+                                    required>
                             </div>
                         </div>
                     </div>
-
                     @foreach ($errors->all() as $error)
                     <p class="text-danger m-0">{{ $error }}</p>
                     @endforeach
@@ -102,5 +103,11 @@
 <script src="{{asset('assets/js/datepicker/date-picker/datepicker.en.js')}}"></script>
 <script src="{{asset('assets/js/time-picker/jquery-clockpicker.min.js')}}"></script>
 <script src="{{asset('assets/js/time-picker/highlight.min.js')}}"></script>
-<script src="{{asset('assets/js/time-picker/clockpicker.js')}}"></script>
+<script>
+    'use strict';
+    $('.clockpicker').clockpicker()
+        .find('input').change(function () {
+            console.log(this.value);
+        });
+</script>
 @endsection

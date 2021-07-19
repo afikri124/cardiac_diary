@@ -9,6 +9,6 @@ $('.clockpicker').clockpicker()
         autoclose: true,
         'default': '20:48'
     });
-    if (/Mobile/.test(navigator.userAgent)) {
-        $('input').prop('readOnly', true);
-    }
+    // if (/Mobile/.test(navigator.userAgent)) {
+    //     $('input').prop('readOnly', true);
+    // }
