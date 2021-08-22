@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/get_all', [App\Http\Controllers\HomeController::class, 'activity_get_all'])->name('activity.get_all');
         Route::any('/new', [App\Http\Controllers\HomeController::class, 'activity_new'])->name('activity.new');
         Route::any('/edit/{id}', [App\Http\Controllers\HomeController::class, 'activity_edit'])->name('activity.edit');
+        Route::any('/delete/{id}', [App\Http\Controllers\HomeController::class, 'activity_delete'])->name('activity.delete');
     });
     Route::get('profile', [App\Http\Controllers\HomeController::class, 'my_profile'])->name('my_profile');
     Route::post('update-profile', [App\Http\Controllers\HomeController::class, 'update_profile'])->name('update_profile');

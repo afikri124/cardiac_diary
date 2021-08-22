@@ -45,7 +45,7 @@
                                     <th scope="col">Oxygen Level</th>
                                     <th scope="col">SYS</th>
                                     <th scope="col">DIA</th>
-                                    <th scope="col" width="60px">Action</th>
+                                    <th scope="col" width="80px">Action</th>
                                 </tr>
                             </thead>
                         </table>
@@ -118,7 +118,9 @@
                         var x = row.id;
                         var html =
                             `<a class="btn btn-success btn-sm px-2" title="Update" href="{{ url('activity/edit/` +
-                            x + `') }}"><i class="fa fa-pencil-square-o"></i></a>`;
+                            x + `') }}"><i class="fa fa-pencil-square-o"></i></a> `
+                            + `<a class="btn btn-danger btn-sm px-2" title="Delete" href="{{ url('activity/delete/` +
+                            x + `') }}"><i class="fa fa-trash"></i></a>`;
                         return html;
                     },
                     orderable: false,

@@ -146,4 +146,10 @@ class HomeController extends Controller
         }
         return view('activity.edit', ['data'=> $data]);
     }
+
+    public function activity_delete($id) {
+        $act = Activity::find($id);
+        $act->delete();
+        return redirect()->route('activity');
+    }
 }
