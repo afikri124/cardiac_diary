@@ -26,7 +26,7 @@
                     @if($data != null)
                     <div class="row mb-3">
                         <label class="col-md-4">
-                            <h6 class="form-label">Date & time</h6>
+                            <h6 class="form-label">Start</h6>
                         </label>
                         <div class="col-md-8">
                             <span>{{ date('d F Y  H:i', strtotime($data->date_time)) }}</span>
@@ -34,13 +34,29 @@
                     </div>
                     <div class="row mb-3">
                         <label class="col-md-4">
+                            <h6 class="form-label">End</h6>
+                        </label>
+                        <div class="col-md-8">
+                            <span>{{ date('d F Y  H:i', strtotime($data->date_time_end)) }}</span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-md-4">
                             <h6 class="form-label">Activity</h6>
+                        </label>
+                        <div class="col-md-8">
+                            <span>{{ $data->activity_type }}</span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-md-4">
+                            <h6 class="form-label">Details</h6>
                         </label>
                         <div class="col-md-8">
                             <span>{{ $data->activity }}</span>
                         </div>
                     </div>
-                    <div class="row mb-3">
+                    <!-- <div class="row mb-3">
                         <label class="col-md-4">
                             <h6 class="form-label">Oxygen Level</h6>
                         </label>
@@ -63,7 +79,7 @@
                         <div class="col-md-8">
                             <span>{{ $data->bloodpressure_dia }}</span>
                         </div>
-                    </div>
+                    </div> -->
                     @else
                     <p>No data available in Database</p>
                     @endif

@@ -40,11 +40,13 @@
                         <table class="table table-hover" id="datatable" width="100%">
                             <thead>
                                 <tr>
-                                    <th scope="col">Date Time</th>
+                                    <th scope="col">Start</th>
+                                    <th scope="col">End</th>
                                     <th scope="col">Activity</th>
-                                    <th scope="col">Oxygen Level</th>
+                                    <th scope="col">Details</th>
+                                    <!-- <th scope="col">Oxygen Level</th>
                                     <th scope="col">SYS</th>
-                                    <th scope="col">DIA</th>
+                                    <th scope="col">DIA</th> -->
                                     <th scope="col" width="80px">Action</th>
                                 </tr>
                             </thead>
@@ -98,28 +100,38 @@
                     },
                 },
                 {
-                    data: 'activity',
-                },
-                {
                     render: function (data, type, row, meta) {
-                        var x = row.oxygen_lvl + "%";
-                        return x;
+                        return moment(row.date_time_end).format("DD MMM YYYY HH:mm");
                     },
                 },
                 {
-                    data: 'bloodpressure_sys',
+                    render: function (data, type, row, meta) {
+                        return row.activity_type;
+                    },
                 },
-                
                 {
-                    data: 'bloodpressure_dia',
+                    data: 'activity',
                 },
+                // {
+                //     render: function (data, type, row, meta) {
+                //         var x = row.oxygen_lvl + "%";
+                //         return x;
+                //     },
+                // },
+                // {
+                //     data: 'bloodpressure_sys',
+                // },
+                
+                // {
+                //     data: 'bloodpressure_dia',
+                // },
                 {
                     render: function (data, type, row, meta) {
                         var x = row.id;
                         var html =
                             `<a class="btn btn-success btn-sm px-2" title="Update" href="{{ url('activity/edit/` +
                             x + `') }}"><i class="fa fa-pencil-square-o"></i></a> `
-                            + `<a class="btn btn-danger btn-sm px-2" title="Delete" href="{{ url('activity/delete/` +
+                            + `<a class="btn btn-danger btn-sm px-2" title="Delete" onclick="return confirm('Are you sure?')" href="{{ url('activity/delete/` +
                             x + `') }}"><i class="fa fa-trash"></i></a>`;
                         return html;
                     },

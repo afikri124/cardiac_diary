@@ -35,7 +35,7 @@
                 <div class="card-body">
                     @csrf
                     <div class="mb-3 row">
-                        <label class="col-sm-3 col-form-label">Date & time</label>
+                        <label class="col-sm-3 col-form-label">Date & time Start</label>
                         <div class="col-sm-5">
                             <input class="datepicker-here form-control digits" autocomplete="off" type="text"
                                 data-language="en" name="date" required value="{{ date('m/d/Y', strtotime($data->date_time)) }}">
@@ -48,12 +48,38 @@
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label class="col-sm-3 col-form-label">Activity</label>
+                        <label class="col-sm-3 col-form-label">Date & time End</label>
+                        <div class="col-sm-5">
+                            <input class="datepicker-here form-control digits" autocomplete="off" type="text"
+                                data-language="en" name="date_end" required value="{{ date('m/d/Y', strtotime($data->date_time_end)) }}">
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group clockpicker">
+                                <input class="form-control" name="time_end" type="text" autocomplete="off" required value="{{ date('H:i', strtotime($data->date_time_end)) }}"><span
+                                    class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-3 col-form-label">Activity Type</label>
+                        <div class="col-sm-9">
+                            <select class="form-select digits select2" id="activity_type" name="activity_type">
+                                <option {{ ($data->activity_type == "Walking" ? "selected": "") }}>Walking</option>
+                                <option {{ ($data->activity_type == "Standing" ? "selected": "") }}>Standing</option>
+                                <option {{ ($data->activity_type == "Sitting" ? "selected": "") }}>Sitting</option>
+                                <option {{ ($data->activity_type == "Stairs Climb" ? "selected": "") }}>Stairs Climb</option>
+                                <option {{ ($data->activity_type == "Running" ? "selected": "") }}>Running</option>
+                                <option {{ ($data->activity_type == "Resting" ? "selected": "") }}>Resting</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-3 col-form-label">Activity Details</label>
                         <div class="col-sm-9">
                             <textarea class="form-control" rows="3" cols="5" name="activity">{{ $data->activity }}</textarea>
                         </div>
                     </div>
-                    <div class="mb-3 row">
+                    <!-- <div class="mb-3 row">
                         <label class="col-sm-3 col-form-label">Oxygen Level</label>
                         <div class="col-sm-9">
                             <div class="input-group">
@@ -79,14 +105,14 @@
                                 <input class="form-control" type="number" name="DIA" title="Blood Pressure DIA" value="{{ $data->bloodpressure_dia }}">
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     @foreach ($errors->all() as $error)
                     <p class="text-danger m-0">{{ $error }}</p>
                     @endforeach
                 </div>
                 <div class="card-footer text-end">
-                    <button class="btn btn-primary" type="submit">Create</button>
+                    <button class="btn btn-primary" type="submit">Save</button>
                     <a href="{{ url()->previous() }}">
                         <span class="btn btn-secondary">Back</span>
                     </a>
@@ -103,4 +129,8 @@
 <script src="{{asset('assets/js/time-picker/jquery-clockpicker.min.js')}}"></script>
 <script src="{{asset('assets/js/time-picker/highlight.min.js')}}"></script>
 <script src="{{asset('assets/js/time-picker/clockpicker.js')}}"></script>
+<script src="{{asset('assets/js/select2/select2.full.min.js')}}"></script>
+<script type="text/javascript">
+    $('.select2').select2({});
+</script>
 @endsection

@@ -2,6 +2,7 @@
 @section('title', 'New Activity')
 
 @section('css')
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/select2.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/date-picker.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/timepicker.css')}}">
 @endsection
@@ -34,7 +35,7 @@
                 <div class="card-body">
                     @csrf
                     <div class="mb-3 row">
-                        <label class="col-sm-3 col-form-label">Date & time</label>
+                        <label class="col-sm-3 col-form-label">Date & time Start</label>
                         <div class="col-sm-5">
                             <input class="datepicker-here form-control digits" autocomplete="off" type="text"
                                 data-language="en" name="date" required>
@@ -47,12 +48,39 @@
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label class="col-sm-3 col-form-label">Activity</label>
+                        <label class="col-sm-3 col-form-label">Date & time End</label>
+                        <div class="col-sm-5">
+                            <input class="datepicker-here form-control digits" autocomplete="off" type="text"
+                                data-language="en" name="date_end" required>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group clockpicker">
+                                <input class="form-control" name="time_end" type="text" autocomplete="off"
+                                    required><span class="input-group-addon"><span
+                                        class="glyphicon glyphicon-time"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-3 col-form-label">Activity Type</label>
+                        <div class="col-sm-9">
+                            <select class="form-select digits select2" id="activity_type" name="activity_type">
+                                <option>Walking</option>
+                                <option>Standing</option>
+                                <option>Sitting</option>
+                                <option>Stairs Climb</option>
+                                <option>Running</option>
+                                <option>Resting</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-3 col-form-label">Activity Details</label>
                         <div class="col-sm-9">
                             <textarea class="form-control" rows="3" cols="5" name="activity"></textarea>
                         </div>
                     </div>
-                    <div class="mb-3 row">
+                    <!-- <div class="mb-3 row">
                         <label class="col-sm-3 col-form-label">Oxygen Level</label>
                         <div class="col-sm-9">
                             <div class="input-group">
@@ -81,7 +109,7 @@
                                     required>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     @foreach ($errors->all() as $error)
                     <p class="text-danger m-0">{{ $error }}</p>
                     @endforeach
@@ -109,5 +137,10 @@
         .find('input').change(function () {
             console.log(this.value);
         });
+
+</script>
+<script src="{{asset('assets/js/select2/select2.full.min.js')}}"></script>
+<script type="text/javascript">
+    $('.select2').select2({});
 </script>
 @endsection

@@ -80,6 +80,8 @@ class HomeController extends Controller
     {
         $data = Activity::select(
             'date_time',
+            'date_time_end',
+            'activity_type',
             'activity',
             'oxygen_lvl',
             'bloodpressure_sys',
@@ -100,15 +102,18 @@ class HomeController extends Controller
         if ($request->isMethod('post')) {
             $request->validate([ 
                 'activity'=> ['required', 'string'],
+                'activity_type'=> ['required', 'string'],
                 'date' => ['required'],
                 'time' => ['required'],
-                'OxygenLevel' => ['required'],
-                'SYS' => ['required'],
-                'DIA' => ['required']
+                // 'OxygenLevel' => ['required'],
+                // 'SYS' => ['required'],
+                // 'DIA' => ['required']
             ]);
             Activity::insert([
                 'activity' => $request->activity,
+                'activity_type' => $request->activity_type,
                 'date_time' => date('Y-m-d H:i', strtotime($request->date." ".$request->time)),
+                'date_time_end' => date('Y-m-d H:i', strtotime($request->date_end." ".$request->time_end)),
                 'oxygen_lvl' => $request->OxygenLevel,
                 'bloodpressure_sys' => $request->SYS,
                 'bloodpressure_dia' => $request->DIA,
@@ -123,15 +128,18 @@ class HomeController extends Controller
         if ($request->isMethod('post')) {
             $request->validate([ 
                 'activity'=> ['required', 'string'],
+                'activity_type'=> ['required', 'string'],
                 'date' => ['required'],
                 'time' => ['required'],
-                'OxygenLevel' => ['required'],
-                'SYS' => ['required'],
-                'DIA' => ['required']
+                // 'OxygenLevel' => ['required'],
+                // 'SYS' => ['required'],
+                // 'DIA' => ['required']
             ]);
             Activity::where('id', $id)->update([ 
                 'activity' => $request->activity,
+                'activity_type' => $request->activity_type,
                 'date_time' => date('Y-m-d H:i', strtotime($request->date." ".$request->time)),
+                'date_time_end' => date('Y-m-d H:i', strtotime($request->date_end." ".$request->time_end)),
                 'oxygen_lvl' => $request->OxygenLevel,
                 'bloodpressure_sys' => $request->SYS,
                 'bloodpressure_dia' => $request->DIA,
