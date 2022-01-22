@@ -92,7 +92,8 @@ class HomeController extends Controller
                         if (!empty($request->get('search'))) {
                              $instance->where(function($w) use($request){
                                 $search = $request->get('search');
-                                $w->where('activity', 'LIKE', "%$search%");
+                                $w->where('activity', 'LIKE', "%$search%")
+                                ->orWhere('activity_type', 'LIKE', "%$search%");;
                             });
                         }
                     })
@@ -101,8 +102,8 @@ class HomeController extends Controller
     public function activity_new(Request $request) {
         if ($request->isMethod('post')) {
             $request->validate([ 
-                'activity'=> ['required', 'string'],
                 'activity_type'=> ['required', 'string'],
+                'activity'=> ['required', 'string'],
                 'date' => ['required'],
                 'time' => ['required'],
                 // 'OxygenLevel' => ['required'],
@@ -127,8 +128,8 @@ class HomeController extends Controller
     public function activity_edit($id, Request $request) {
         if ($request->isMethod('post')) {
             $request->validate([ 
-                'activity'=> ['required', 'string'],
                 'activity_type'=> ['required', 'string'],
+                'activity'=> ['required', 'string'],
                 'date' => ['required'],
                 'time' => ['required'],
                 // 'OxygenLevel' => ['required'],

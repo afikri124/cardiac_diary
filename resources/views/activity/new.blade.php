@@ -65,6 +65,7 @@
                         <label class="col-sm-3 col-form-label">Activity Type</label>
                         <div class="col-sm-9">
                             <select class="form-select digits select2" id="activity_type" name="activity_type">
+                                <option value="" selected disabled>Select</option>
                                 <option>Walking</option>
                                 <option>Standing</option>
                                 <option>Sitting</option>
@@ -77,7 +78,7 @@
                     <div class="mb-3 row">
                         <label class="col-sm-3 col-form-label">Activity Details</label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" rows="3" cols="5" name="activity"></textarea>
+                            <textarea class="form-control" rows="3" cols="5" name="activity">{{ old('activity') }}</textarea>
                         </div>
                     </div>
                     <!-- <div class="mb-3 row">
