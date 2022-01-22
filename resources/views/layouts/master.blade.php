@@ -82,6 +82,51 @@
     <!-- latest jquery-->
     @include('layouts.script')
     <!-- Plugin used-->
-</body>
+    <script type="text/javascript">
+        $(".mode").on("click", function () {
+            $('.mode i').toggleClass("fa-moon-o").toggleClass("fa-lightbulb-o");
+            var color = $(this).attr("data-attr");
+            if (typeof (Storage) !== "undefined") {
+                var y = document.getElementById("darkmodeicon").className;
+                if (y == "fa fa-moon-o") {
+                    $('body').toggleClass(localStorage.getItem("body"));
+                    localStorage.removeItem('body');
+                } else {
+                    localStorage.setItem('body', 'dark-only');
+                    $('body').toggleClass(localStorage.getItem("body"));
+                }
+            }
+        });
+        // Check browser support
+        if (typeof (Storage) !== "undefined") {
+            if (localStorage.getItem("body") == 'dark-only') {
+                $('body').toggleClass(localStorage.getItem("body"));
+                var y = document.getElementById("darkmodeicon").className;
+                if (y == "fa fa-moon-o") {
+                    console.log("Dark mode on");
+                    $('.mode i').toggleClass("fa-moon-o").toggleClass("fa-lightbulb-o");
+                }
+            }
+            if (localStorage.getItem("full_screen") == "Fullscreen mode on") {
+                console.log(localStorage.getItem("full_screen"));
+                toggleFullScreen();
+            }
+        } else {
+            console.log("Sorry, your browser does not support Web Storage...");
+        }
 
+        $(".maximize").on("click", function () {
+            toggleFullScreen();
+            if (typeof (Storage) !== "undefined") {
+                if (localStorage.getItem("full_screen") != null) {
+                    localStorage.removeItem('full_screen');
+                } else {
+                    localStorage.setItem('full_screen', "Fullscreen mode on");
+                }
+            }
+        });
+
+    </script>
+
+</body>
 </html>

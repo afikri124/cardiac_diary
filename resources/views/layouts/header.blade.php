@@ -26,11 +26,10 @@
         <div class="nav-right col-8 pull-right right-header p-0">
             <ul class="nav-menus">
                 <li>
-                    <div class="mode"><i class="fa fa-moon-o"></i></div>
+                    <div class="mode"><i id="darkmodeicon" class="fa fa-moon-o"></i></div>
                 </li>
 
-                <li class="maximize"><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i
-                            data-feather="maximize"></i></a></li>
+                <li class="maximize"><a class="text-dark" href="#!"><i data-feather="maximize"></i></a></li>
                 <li class="profile-nav onhover-dropdown p-0 me-0">
                     <div class="media profile-media">
                         <img class="b-r-10" src="{{asset('assets/images/user/user.png')}}" style="width: 40px;" alt="">
@@ -41,8 +40,10 @@
                         </div>
                     </div>
                     <ul class="profile-dropdown onhover-show-div" style="width: 200px;">
-                        <li><a href="{{ route('my_profile') }}"><i data-feather="user"></i><span>My Profile </span></a></li>
-                        <li><a href="{{ route('change_password') }}"><i data-feather="unlock"></i><span>Change Password</span></a></li>
+                        <li><a href="{{ route('my_profile') }}"><i data-feather="user"></i><span>My Profile </span></a>
+                        </li>
+                        <li><a href="{{ route('change_password') }}"><i data-feather="unlock"></i><span>Change
+                                    Password</span></a></li>
                         <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                document.getElementById('logout-form').submit();">
                                 <i data-feather="log-out"> </i><span>Log out</span></a></li>
