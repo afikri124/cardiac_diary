@@ -112,9 +112,9 @@
                     @endforeach
                 </div>
                 <div class="card-footer text-end">
-                    <button class="btn btn-primary" type="submit">Save</button>
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-check"></i> Save</button>
                     <a href="{{ url()->previous() }}">
-                        <span class="btn btn-secondary">Back</span>
+                        <span class="btn btn-light"><i class="fa fa-angle-left"></i> Back</span>
                     </a>
                 </div>
             </form>

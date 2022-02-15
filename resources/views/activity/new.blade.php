@@ -72,6 +72,8 @@
                                 <option>Stairs Climb</option>
                                 <option>Running</option>
                                 <option>Resting</option>
+                                <option>Exercising</option>
+                                <option>Others</option>
                             </select>
                         </div>
                     </div>
@@ -116,9 +118,9 @@
                     @endforeach
                 </div>
                 <div class="card-footer text-end">
-                    <button class="btn btn-primary" type="submit">Create</button>
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-plus"></i> Create</button>
                     <a href="{{ url()->previous() }}">
-                        <span class="btn btn-secondary">Back</span>
+                        <span class="btn btn-light"><i class="fa fa-angle-left"></i> Back</span>
                     </a>
                 </div>
             </form>

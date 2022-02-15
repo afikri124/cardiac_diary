@@ -72,15 +72,17 @@
                         </div>
                     </div>
                 </div>
-                @if($data->date_time_end == null)
                 <div class="card-footer text-end">
-                    <a class="btn btn-danger"
-                        onclick="return confirm('Are you sure you want to stop this activity?')" title="Stop Activity"
-                        href="{{ route('activity.stop', $data->id ) }}">
+                    @if($data->date_time_end == null)
+                    <a class="btn btn-danger" onclick="return confirm('Are you sure you want to stop this activity?')"
+                        title="Stop Activity" href="{{ route('activity.stop', $data->id ) }}">
                         <i class="fa fa-stop"></i> Stop
                     </a>
+                    @endif
+                    <a href="{{ route('activity') }}">
+                        <span class="btn btn-light"><i class="fa fa-angle-left"></i> Back</span>
+                    </a>
                 </div>
-                @endif
             </div>
         </div>
     </div>

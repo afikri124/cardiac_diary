@@ -39,7 +39,7 @@
                         <div class="col-md-8">
                             <span>
                                 @if($data->date_time_end == null)
-                                <i>still ongoing</i> <a class="text-danger btn btn-light btn-sm px-2"
+                                <i>still ongoing </i> <a class="text-danger btn btn-light btn-sm px-2"
                                     onclick="return confirm('Are you sure you want to stop this activity?')"
                                     title="Stop Activity"
                                     href="{{ route('activity.stop', $data->id ) }}">

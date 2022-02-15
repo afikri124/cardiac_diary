@@ -45,6 +45,8 @@
                                 <option>Stairs Climb</option>
                                 <option>Running</option>
                                 <option>Resting</option>
+                                <option>Exercising</option>
+                                <option>Others</option>
                             </select>
                         </div>
                     </div>
@@ -61,7 +63,7 @@
                 <div class="card-footer text-end">
                     <button class="btn btn-success" type="submit"><i class="fa fa-play"></i> Start</button>
                     <a href="{{ url()->previous() }}">
-                        <span class="btn btn-secondary"><i class="fa fa-angle-left"></i> Back</span>
+                        <span class="btn btn-light"><i class="fa fa-angle-left"></i> Back</span>
                     </a>
                 </div>
             </form>
