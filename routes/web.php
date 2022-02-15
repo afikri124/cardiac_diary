@@ -28,7 +28,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::view('/', 'activity.index')->name('activity');
         Route::get('/get_all', [App\Http\Controllers\HomeController::class, 'activity_get_all'])->name('activity.get_all');
         Route::any('/new', [App\Http\Controllers\HomeController::class, 'activity_new'])->name('activity.new');
+        Route::any('/live', [App\Http\Controllers\HomeController::class, 'activity_live'])->name('activity.live');
+        Route::any('/live/{id}', [App\Http\Controllers\HomeController::class, 'activity_live_id'])->name('activity.live_id');
         Route::any('/edit/{id}', [App\Http\Controllers\HomeController::class, 'activity_edit'])->name('activity.edit');
+        Route::any('/stop/{id}', [App\Http\Controllers\HomeController::class, 'activity_stop'])->name('activity.stop');
         Route::any('/delete/{id}', [App\Http\Controllers\HomeController::class, 'activity_delete'])->name('activity.delete');
     });
     Route::get('profile', [App\Http\Controllers\HomeController::class, 'my_profile'])->name('my_profile');

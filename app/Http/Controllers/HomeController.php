@@ -110,11 +110,15 @@ class HomeController extends Controller
                 // 'SYS' => ['required'],
                 // 'DIA' => ['required']
             ]);
+            $date_end = date('Y-m-d H:i', strtotime($request->date_end." ".$request->time_end));
+            if($request->time_end == null){
+                $date_end = null;
+            }
             Activity::insert([
                 'activity' => $request->activity,
                 'activity_type' => $request->activity_type,
                 'date_time' => date('Y-m-d H:i', strtotime($request->date." ".$request->time)),
-                'date_time_end' => date('Y-m-d H:i', strtotime($request->date_end." ".$request->time_end)),
+                'date_time_end' => $date_end,
                 'oxygen_lvl' => $request->OxygenLevel,
                 'bloodpressure_sys' => $request->SYS,
                 'bloodpressure_dia' => $request->DIA,
@@ -125,6 +129,35 @@ class HomeController extends Controller
         }
         return view('activity.new');
     }
+
+    public function activity_live(Request $request) {
+        if ($request->isMethod('post')) {
+            $request->validate([ 
+                'activity_type'=> ['required', 'string'],
+                'activity'=> ['required', 'string'],
+            ]);
+            $id = Activity::insertGetId([
+                'activity' => $request->activity,
+                'activity_type' => $request->activity_type,
+                'date_time' => Carbon::now(),
+                'date_time_end' => null,
+                'oxygen_lvl' => $request->OxygenLevel,
+                'bloodpressure_sys' => $request->SYS,
+                'bloodpressure_dia' => $request->DIA,
+                'user_id' => Auth::user()->id,
+                'created_at' => Carbon::now()
+            ]);
+            return redirect()->route('activity.live_id', $id);
+        }
+        return view('activity.live');
+    }
+
+    public function activity_live_id($id)
+    {
+        $data = Activity::find($id);
+        return view('activity.live_id', ['data'=> $data]);
+    }
+
     public function activity_edit($id, Request $request) {
         if ($request->isMethod('post')) {
             $request->validate([ 
@@ -136,11 +169,15 @@ class HomeController extends Controller
                 // 'SYS' => ['required'],
                 // 'DIA' => ['required']
             ]);
+            $date_end = date('Y-m-d H:i', strtotime($request->date_end." ".$request->time_end));
+            if($request->time_end == null){
+                $date_end = null;
+            }
             Activity::where('id', $id)->update([ 
                 'activity' => $request->activity,
                 'activity_type' => $request->activity_type,
                 'date_time' => date('Y-m-d H:i', strtotime($request->date." ".$request->time)),
-                'date_time_end' => date('Y-m-d H:i', strtotime($request->date_end." ".$request->time_end)),
+                'date_time_end' => $date_end,
                 'oxygen_lvl' => $request->OxygenLevel,
                 'bloodpressure_sys' => $request->SYS,
                 'bloodpressure_dia' => $request->DIA,
@@ -154,6 +191,14 @@ class HomeController extends Controller
             return redirect()->route('activity');
         }
         return view('activity.edit', ['data'=> $data]);
+    }
+
+    public function activity_stop($id) {
+        Activity::where('id', $id)->update([ 
+            'date_time_end' => Carbon::now(),
+            'updated_at'=> Carbon::now()
+        ]);
+        return redirect()->back(); 
     }
 
     public function activity_delete($id) {

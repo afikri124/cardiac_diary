@@ -34,10 +34,6 @@
                             <div class="media">
                                 <img class="img-70 rounded-circle" alt=""
                                     src="{{ asset('assets/images/user/user.png')}}">
-                                <div class="media-body">
-                                    <h3 class="mb-1">{{ ucfirst($data->name) }}</h3>
-                                    <p>{{ ucfirst($data->username) }}</p>
-                                </div>
                             </div>
                         </div>
                     </div>

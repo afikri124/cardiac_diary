@@ -51,11 +51,11 @@
                         <label class="col-sm-3 col-form-label">Date & time End</label>
                         <div class="col-sm-5">
                             <input class="datepicker-here form-control digits" autocomplete="off" type="text"
-                                data-language="en" name="date_end" required value="{{ date('m/d/Y', strtotime($data->date_time_end)) }}">
+                                data-language="en" name="date_end" value="{{ ($data->date_time_end == null ? '': date('m/d/Y', strtotime($data->date_time_end)) ) }}">
                         </div>
                         <div class="col-sm-4">
                             <div class="input-group clockpicker">
-                                <input class="form-control" name="time_end" type="text" autocomplete="off" required value="{{ date('H:i', strtotime($data->date_time_end)) }}"><span
+                                <input class="form-control" name="time_end" type="text" autocomplete="off" value="{{ ($data->date_time_end == null ? '': date('H:i', strtotime($data->date_time_end)) ) }}"><span
                                     class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
                             </div>
                         </div>

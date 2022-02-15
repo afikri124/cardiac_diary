@@ -26,8 +26,11 @@
             <div class="card">
                 <div class="row">
                     <div class="col-md-12 d-flex justify-content-center justify-content-md-end">
+                        <a class="btn btn-success btn-block btn-mail mr-2" href="{{ route('activity.live')}}">
+                            <i data-feather="plus"></i>Live Activity
+                        </a>
                         <a class="btn btn-primary btn-block btn-mail" href="{{ route('activity.new')}}">
-                            <i data-feather="plus"></i>New Activity
+                            <i data-feather="plus"></i>Scheduled Activity
                         </a>
                     </div>
                 </div>
@@ -47,7 +50,7 @@
                                     <!-- <th scope="col">Oxygen Level</th>
                                     <th scope="col">SYS</th>
                                     <th scope="col">DIA</th> -->
-                                    <th scope="col" width="80px">Action</th>
+                                    <th scope="col" width="120px">Action</th>
                                 </tr>
                             </thead>
                         </table>
@@ -101,7 +104,13 @@
                 },
                 {
                     render: function (data, type, row, meta) {
-                        return moment(row.date_time_end).format("DD MMM YYYY HH:mm");
+                        var x = row.id;
+                        var html = moment(row.date_time_end).format("DD MMM YYYY HH:mm");
+                        if(row.date_time_end == null){
+                            html = `<a class="btn btn-light text-danger btn-sm px-2" title="Stop Activity" onclick="return confirm('Are you sure you want to stop this activity?')" href="{{ url('activity/stop/` +
+                            x + `') }}"><i class="fa fa-stop"></i> Stop</a> `
+                        }
+                        return html;
                     },
                 },
                 {
@@ -129,14 +138,17 @@
                     render: function (data, type, row, meta) {
                         var x = row.id;
                         var html =
-                            `<a class="btn btn-success btn-sm px-2" title="Update" href="{{ url('activity/edit/` +
-                            x + `') }}"><i class="fa fa-pencil-square-o"></i></a> `
-                            + `<a class="btn btn-danger btn-sm px-2" title="Delete" onclick="return confirm('Are you sure?')" href="{{ url('activity/delete/` +
+                            `<a class="btn btn-warning btn-sm px-2 m-1" title="View" href="{{ url('activity/live/` +
+                            x + `') }}"><i class="fa fa-eye"></i></a>`
+                            +
+                            `<a class="btn btn-info btn-sm px-2 m-1" title="Update" href="{{ url('activity/edit/` +
+                            x + `') }}"><i class="fa fa-pencil-square-o"></i></a>`
+                            + `<a class="btn btn-danger btn-sm px-2 m-1" title="Delete" onclick="return confirm('Are you sure?')" href="{{ url('activity/delete/` +
                             x + `') }}"><i class="fa fa-trash"></i></a>`;
                         return html;
                     },
                     orderable: false,
-                    className: "text-end"
+                    className: "text-center"
                 }
             ]
         });

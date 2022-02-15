@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'New Activity')
+@section('title', 'New Scheduled Activity')
 
 @section('css')
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/select2.css')}}">
@@ -51,12 +51,12 @@
                         <label class="col-sm-3 col-form-label">Date & time End</label>
                         <div class="col-sm-5">
                             <input class="datepicker-here form-control digits" autocomplete="off" type="text"
-                                data-language="en" name="date_end" required>
+                                data-language="en" name="date_end" >
                         </div>
                         <div class="col-sm-4">
                             <div class="input-group clockpicker">
                                 <input class="form-control" name="time_end" type="text" autocomplete="off"
-                                    required><span class="input-group-addon"><span
+                                    ><span class="input-group-addon"><span
                                         class="glyphicon glyphicon-time"></span></span>
                             </div>
                         </div>
