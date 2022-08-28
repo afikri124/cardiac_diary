@@ -26,7 +26,6 @@ Route::get('/home', function () {
 Route::group(['middleware' => ['auth']], function () {
     Route::prefix('activity')->group(function () {
         Route::view('/', 'activity.index')->name('activity');
-        Route::get('/get_all', [App\Http\Controllers\HomeController::class, 'activity_get_all'])->name('activity.get_all');
         Route::any('/new', [App\Http\Controllers\HomeController::class, 'activity_new'])->name('activity.new');
         Route::any('/live', [App\Http\Controllers\HomeController::class, 'activity_live'])->name('activity.live');
         Route::any('/live/{id}', [App\Http\Controllers\HomeController::class, 'activity_live_id'])->name('activity.live_id');
@@ -39,3 +38,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::view('change-password', 'user.change_password')->name('change_password');
     Route::post('update-password', [App\Http\Controllers\HomeController::class, 'update_password'])->name('update_password');
 });
+
+Route::get('/tes', [App\Http\Controllers\HomeController::class, 'activity_get_all'])->name('activity.get_all');
