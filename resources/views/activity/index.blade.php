@@ -91,7 +91,7 @@
                 lengthMenu: '<span>Show:</span> _MENU_',
             },
             ajax: {
-                url: "{{url('activity/get_all')}}",
+                url: "{{route('activity.get_all')}}",
                 data: function (d) {
                         d.search = $('input[type="search"]').val()
                 },

@@ -32,7 +32,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::any('/edit/{id}', [App\Http\Controllers\HomeController::class, 'activity_edit'])->name('activity.edit');
         Route::any('/stop/{id}', [App\Http\Controllers\HomeController::class, 'activity_stop'])->name('activity.stop');
         Route::any('/delete/{id}', [App\Http\Controllers\HomeController::class, 'activity_delete'])->name('activity.delete');
-        Route::get('/get_all', [App\Http\Controllers\HomeController::class, 'activity_get_all']);
+        Route::get('/get_all', [App\Http\Controllers\HomeController::class, 'activity_get_all'])->name('activity.get_all');;
     });
     Route::get('profile', [App\Http\Controllers\HomeController::class, 'my_profile'])->name('my_profile');
     Route::post('update-profile', [App\Http\Controllers\HomeController::class, 'update_profile'])->name('update_profile');
