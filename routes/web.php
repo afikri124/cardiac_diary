@@ -39,4 +39,4 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('update-password', [App\Http\Controllers\HomeController::class, 'update_password'])->name('update_password');
 });
 
-Route::get('/tes', [App\Http\Controllers\HomeController::class, 'activity_get_all'])->name('activity.get_all');
+Route::get('/tes', [App\Http\Controllers\HomeController::class, 'activity_get_all_user']);

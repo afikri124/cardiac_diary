@@ -86,7 +86,8 @@ class HomeController extends Controller
             'oxygen_lvl',
             'bloodpressure_sys',
             'bloodpressure_dia',
-            'id', 'user_id')->where('user_id', Auth::user()->id)->orderByDesc('date_time');
+            'id', 'user_id')
+            ->where('user_id', Auth::user()->id)->orderByDesc('date_time');
             return Datatables::of($data)
                     ->filter(function ($instance) use ($request) {
                         if (!empty($request->get('search'))) {
@@ -99,6 +100,32 @@ class HomeController extends Controller
                     })
                     ->make(true);
     }
+
+    public function activity_get_all_user(Request $request)
+    {
+        $data = Activity::select(
+            'date_time',
+            'date_time_end',
+            'activity_type',
+            'activity',
+            'oxygen_lvl',
+            'bloodpressure_sys',
+            'bloodpressure_dia',
+            'id', 'user_id')
+            ->orderByDesc('date_time');
+            return Datatables::of($data)
+                    ->filter(function ($instance) use ($request) {
+                        if (!empty($request->get('search'))) {
+                             $instance->where(function($w) use($request){
+                                $search = $request->get('search');
+                                $w->where('activity', 'LIKE', "%$search%")
+                                ->orWhere('activity_type', 'LIKE', "%$search%");;
+                            });
+                        }
+                    })
+                    ->make(true);
+    }
+
     public function activity_new(Request $request) {
         if ($request->isMethod('post')) {
             $request->validate([ 
